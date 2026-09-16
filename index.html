@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мои Услуги</title>
+    <!-- Подключаем Telegram Web App API -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        /* Базовые настройки и черно-белая тема */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -25,7 +26,6 @@
             margin: 0 auto;
         }
 
-        /* Заголовок сайта */
         header {
             text-align: center;
             margin-bottom: 60px;
@@ -40,7 +40,6 @@
             text-transform: uppercase;
         }
 
-        /* Стили категорий */
         .category {
             margin-bottom: 50px;
         }
@@ -55,14 +54,12 @@
             letter-spacing: 1px;
         }
 
-        /* Сетка для товаров */
         .products-grid {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        /* Карточка товара */
         .product-card {
             border: 1px solid #000;
             padding: 20px;
@@ -97,7 +94,6 @@
             white-space: nowrap;
         }
 
-        /* Старая цена (зачеркнутая) */
         .old-price {
             text-decoration: line-through;
             font-size: 0.9rem;
@@ -111,14 +107,13 @@
             margin-bottom: 20px;
         }
 
-        /* Кнопка заказа (теперь это ссылка) */
         .btn-order {
             display: inline-block;
             background-color: transparent;
             color: inherit;
             border: 1px solid currentColor;
             padding: 10px 20px;
-            text-decoration: none; /* Убирает подчеркивание ссылки */
+            text-decoration: none;
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.8rem;
@@ -126,6 +121,9 @@
             cursor: pointer;
             transition: background-color 0.2s, color 0.2s;
             align-self: flex-start;
+            /* Важно: делаем кнопку кликабельной */
+            position: relative;
+            z-index: 10;
         }
 
         .product-card:hover .btn-order {
@@ -140,7 +138,6 @@
             border-color: #000 !important;
         }
 
-        /* Адаптивность для мобильных */
         @media (max-width: 600px) {
             .product-header {
                 flex-direction: column;
@@ -159,7 +156,6 @@
         <h1>Мои Услуги</h1>
     </header>
 
-    <!-- КАТЕГОРИЯ: ANDROID -->
     <section class="category">
         <h2 class="category-title">Android</h2>
         <div class="products-grid">
@@ -169,12 +165,11 @@
                     <span class="product-price">1 500 ₽ <span class="old-price">2000 ₽</span></span>
                 </div>
                 <p class="product-desc">Приложение по типу калькулятора, заметок и т.д., которые не используют базы данных, API и т.п.</p>
-                <a href="https://t.me/Solitare_developer_bot" class="btn-order">Заказать</a>
+                <a href="https://t.me/Solitare_developer_bot" class="btn-order" onclick="openBot(event)">Заказать</a>
             </div>
         </div>
     </section>
 
-    <!-- КАТЕГОРИЯ: WEB -->
     <section class="category">
         <h2 class="category-title">Web</h2>
         <div class="products-grid">
@@ -184,7 +179,7 @@
                     <span class="product-price">1 000 ₽ <span class="old-price">2500 ₽</span></span>
                 </div>
                 <p class="product-desc">Одностраничный сайт.</p>
-                <a href="https://t.me/Solitare_developer_bot" class="btn-order">Заказать</a>
+                <a href="https://t.me/Solitare_developer_bot" class="btn-order" onclick="openBot(event)">Заказать</a>
             </div>
             
             <div class="product-card">
@@ -193,12 +188,11 @@
                     <span class="product-price">2 000 ₽ <span class="old-price">3000 ₽</span></span>
                 </div>
                 <p class="product-desc">Много страниц типа главная, о проекте и т.д., с входом и регистрацией, но код будет на локалсториж, то бишь данные для входа и т.д. в браузере хранятся, бд сами подключайте.</p>
-                <a href="https://t.me/Solitare_developer_bot" class="btn-order">Заказать</a>
+                <a href="https://t.me/Solitare_developer_bot" class="btn-order" onclick="openBot(event)">Заказать</a>
             </div>
         </div>
     </section>
 
-    <!-- КАТЕГОРИЯ: WINDOWS -->
     <section class="category">
         <h2 class="category-title">Windows</h2>
         <div class="products-grid">
@@ -208,7 +202,7 @@
                     <span class="product-price">500 ₽ <span class="old-price">1500 ₽</span></span>
                 </div>
                 <p class="product-desc">Приложение которое в расширение .py запускается через cmd.</p>
-                <a href="https://t.me/Solitare_developer_bot" class="btn-order">Заказать</a>
+                <a href="https://t.me/Solitare_developer_bot" class="btn-order" onclick="openBot(event)">Заказать</a>
             </div>
 
             <div class="product-card">
@@ -217,7 +211,7 @@
                     <span class="product-price">700 ₽ <span class="old-price">1900 ₽</span></span>
                 </div>
                 <p class="product-desc">Это файл который сам запускает софт в cmd и нужно ток клацнуть и все.</p>
-                <a href="https://t.me/Solitare_developer_bot" class="btn-order">Заказать</a>
+                <a href="https://t.me/Solitare_developer_bot" class="btn-order" onclick="openBot(event)">Заказать</a>
             </div>
 
             <div class="product-card">
@@ -226,11 +220,37 @@
                     <span class="product-price">2 500 ₽ <span class="old-price">7000 ₽</span></span>
                 </div>
                 <p class="product-desc">Это уже полноценное приложение которое надо установить.</p>
-                <a href="https://t.me/Solitare_developer_bot" class="btn-order">Заказать</a>
+                <a href="https://t.me/Solitare_developer_bot" class="btn-order" onclick="openBot(event)">Заказать</a>
             </div>
         </div>
     </section>
 </div>
+
+<script>
+    // Инициализация Telegram Web App
+    const tg = window.Telegram?.WebApp;
+    
+    if (tg) {
+        tg.ready();
+        tg.expand(); // Разворачиваем на весь экран
+    }
+
+    // Функция обработки клика по кнопке "Заказать"
+    function openBot(event) {
+        event.preventDefault(); // Отменяем стандартное поведение ссылки
+        
+        const botUrl = "https://t.me/Solitare_developer_bot";
+        
+        // Если мы внутри Telegram Mini App
+        if (tg && tg.initData !== "") {
+            // Открываем ссылку через Telegram API
+            tg.openTelegramLink(botUrl);
+        } else {
+            // Если открыто в обычном браузере — просто переходим
+            window.location.href = botUrl;
+        }
+    }
+</script>
 
 </body>
 </html>
